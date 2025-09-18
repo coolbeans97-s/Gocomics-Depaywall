@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name        Gocomics Depaywall
 // @description Bypasses the Gocomics Paywall and Removes Ads
-// @icon        https://github.com/Idiot-01/Gocomics-Depaywall/raw/master/Extension/icons/icon48.png
+// @icon        https://github.com/Idiot-01/Gocomics-Depaywall/raw/refs/heads/master/Extension/icons/border-48.png
 // @match       *://*.gocomics.com/*
 // @grant       none
-// @version     2.1
+// @version     2.2
 // @author      Idiot01
 // @compatible  chrome
 // @compatible  firefox

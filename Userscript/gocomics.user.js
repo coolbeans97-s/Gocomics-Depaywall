@@ -29,6 +29,12 @@
     div[data-paywall] {
         display: none !important;
     }
+    div[class*="Comic-module-scss-module__3szrOa__comic__image"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+}
     html, body {
         overflow: auto !important;
     }

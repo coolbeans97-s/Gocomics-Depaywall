@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Gocomics Depaywall
 // @description Bypasses the Gocomics Paywall and Removes Ads
-// @icon        https://github.com/Idiot-01/Gocomics-Depaywall/raw/refs/heads/master/Extension/icons/border-48.png
+// @icon        https://github.com/coolbeans97-s/Gocomics-Depaywall/raw/refs/heads/master/Extension/icons/border-48.png
 // @match       *://*.gocomics.com/*
 // @grant       none
 // @version     2.2
@@ -11,8 +11,8 @@
 // @compatible  opera
 // @compatible  safari
 // @compatible  edge
-// @downloadURL https://github.com/Idiot-01/Gocomics-Depaywall/raw/master/Userscript/gocomics.user.js
-// @updateURL   https://github.com/Idiot-01/Gocomics-Depaywall/raw/master/Userscript/gocomics.user.js
+// @downloadURL https://github.com/coolbeans97-s/Gocomics-Depaywall/raw/master/Userscript/gocomics.user.js
+// @updateURL   https://github.com/coolbeans97-s/Gocomics-Depaywall/raw/master/Userscript/gocomics.user.js
 // @run-at      document-end
 // ==/UserScript==
 
@@ -24,6 +24,7 @@
   const css = `
     div[class*="AdDisplay"],
     div[class*="HeaderAd"],
+    div[class*="RollUpUpsell"],
     div[class*="UpsellSectionBreak"],
     div[data-paywall] {
         display: none !important;
@@ -32,8 +33,7 @@
         overflow: auto !important;
     }
   `;
-  // now comic class name: div[class*="RollUpUpsell"]
-
+  // now comic class name: 
   const style = document.createElement('style');
   style.textContent = css;
   document.head.appendChild(style);

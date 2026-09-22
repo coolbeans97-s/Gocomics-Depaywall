@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Gocomics Depaywall & Comic Replacer
 // @description Bypasses the Gocomics Paywall, Removes Ads, and Replaces Skeletons with the Full Comic Viewer scaled to the device viewport
-// @icon        https://github.com
+// @icon        https://github.com/coolbeans97-s/Gocomics-Depaywall/raw/refs/heads/master/Extension/icons/border-48.png
 // @match       *://*.gocomics.com/*
 // @grant       none
 // @version     3.1
@@ -11,8 +11,8 @@
 // @compatible  opera
 // @compatible  safari
 // @compatible  edge
-// @downloadURL https://github.com
-// @updateURL   https://github.com
+// @downloadURL https://github.com/coolbeans97-s/Gocomics-Depaywall/raw/master/Userscript/gocomics.user.js
+// @updateURL   https://github.com/coolbeans97-s/Gocomics-Depaywall/raw/master/Userscript/gocomics.user.js
 // @run-at      document-start
 // ==/UserScript==
 

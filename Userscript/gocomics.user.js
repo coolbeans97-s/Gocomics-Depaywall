@@ -1,25 +1,25 @@
 // ==UserScript==
-// @name        Gocomics Depaywall
-// @description Bypasses the Gocomics Paywall and Removes Ads
-// @icon        https://github.com/coolbeans97-s/Gocomics-Depaywall/raw/refs/heads/master/Extension/icons/border-48.png
+// @name        Gocomics Depaywall & Comic Replacer
+// @description Bypasses the Gocomics Paywall, Removes Ads, and Replaces Skeletons with the Full Comic Viewer scaled to the device viewport
+// @icon        https://github.com
 // @match       *://*.gocomics.com/*
 // @grant       none
-// @version     2.2
+// @version     3.1
 // @author      Idiot01
 // @compatible  chrome
 // @compatible  firefox
 // @compatible  opera
 // @compatible  safari
 // @compatible  edge
-// @downloadURL https://github.com/coolbeans97-s/Gocomics-Depaywall/raw/master/Userscript/gocomics.user.js
-// @updateURL   https://github.com/coolbeans97-s/Gocomics-Depaywall/raw/master/Userscript/gocomics.user.js
+// @downloadURL https://github.com
+// @updateURL   https://github.com
 // @run-at      document-start
 // ==/UserScript==
 
 (function () {
   'use strict';
 
-  // 1. Inject Pure CSS for Hiding Ads and Auto-Scaling Images
+  // 1. Inject Pure CSS for Hiding Ads and Viewport-relative Image Scaling
   const css = `
     div[class*="AdDisplay"],
     div[class*="HeaderAd"],
@@ -29,16 +29,19 @@
         display: none !important;
     }
     
+    /* Responsive adjustment ensuring layout tracks the device width meta-rule */
     img[class*="Comic-module-scss-module__3szrOa__comic__image"] {
-        width: 100% !important;
-        max-width: 100% !important;
-        height: auto !important;
+        width: 100vw !important;         /* Forces width to stick exactly to 100% of mobile/desktop viewport */
+        max-width: 100% !important;       /* Prevents escaping parent bounds if container restricts it */
+        height: auto !important;          /* Automatically calculates proportional height */
         display: block !important;
-        object-fit: contain !important;
+        object-fit: contain !important;   /* Safely locks drawing context layout ratios without distortion */
+        margin: 0 auto !important;        /* Centers the comic panel horizontally if constraints apply */
     }
     
     html, body {
         overflow: auto !important;
+        width: 100% !important;
     }
   `;
   
@@ -58,18 +61,18 @@
 
     // Inject the structured layout tree matching standard viewports
     const customHTML = `
-        <div class="ComicViewer-module-scss-module__FfaN_W__comicViewer">
-            <div dir="ltr" class="ScrollContainer-module-scss-module__vx0EGq__scrollZone" data-testid="scroll-container-root" style="position: relative; --radix-scroll-area-corner-width: 0px; --radix-scroll-area-corner-height: 0px;">
+        <div class="ComicViewer-module-scss-module__FfaN_W__comicViewer" style="width: 100% !important;">
+            <div dir="ltr" class="ScrollContainer-module-scss-module__vx0EGq__scrollZone" data-testid="scroll-container-root" style="position: relative; --radix-scroll-area-corner-width: 0px; --radix-scroll-area-corner-height: 0px; width: 100% !important;">
                 <style>
                     [data-radix-scroll-area-viewport]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}
                     [data-radix-scroll-area-viewport]::-webkit-scrollbar{display:none}
                 </style>
-                <div data-radix-scroll-area-viewport="" class="ScrollContainer-module-scss-module__vx0EGq__scrollZone__viewport" style="overflow: scroll hidden;">
-                    <div style="min-width: 100%; display: table;">
-                        <div class="ScrollContainer-module-scss-module__vx0EGq__scrollZone__content ScrollContainer-module-scss-module__vx0EGq__scrollZone__content_container">
-                            <div class="ScrollContainer-module-scss-module__vx0EGq__scrollZone__children">
-                                <div class="Comic-module-scss-module__3szrOa__comic" data-aspect-ratio="3.488">
-                                    <button aria-disabled="false" aria-label="Expand comic" class="Comic-module-scss-module__3szrOa__comic__lightboxTrigger" type="button">
+                <div data-radix-scroll-area-viewport="" class="ScrollContainer-module-scss-module__vx0EGq__scrollZone__viewport" style="overflow: scroll hidden; width: 100% !important;">
+                    <div style="min-width: 100%; display: table; width: 100% !important;">
+                        <div class="ScrollContainer-module-scss-module__vx0EGq__scrollZone__content ScrollContainer-module-scss-module__vx0EGq__scrollZone__content_container" style="width: 100% !important;">
+                            <div class="ScrollContainer-module-scss-module__vx0EGq__scrollZone__children" style="width: 100% !important;">
+                                <div class="Comic-module-scss-module__3szrOa__comic" data-aspect-ratio="3.488" style="width: 100% !important;">
+                                    <button aria-disabled="false" aria-label="Expand comic" class="Comic-module-scss-module__3szrOa__comic__lightboxTrigger" type="button" style="width: 100% !important; background: none; border: none; padding: 0;">
                                         <img alt="Comic panel" decoding="async" data-nimg="1" class="Comic-module-scss-module__3szrOa__comic__image Comic-module-scss-module__3szrOa__comic__image_isStrip" src="${imgSrc}">
                                     </button>
                                 </div>
